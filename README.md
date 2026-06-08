@@ -13,35 +13,26 @@ Main directories and files are listed below:
 
 ```
 .
-├── checkpoints  # 模型的权重
-├── models  # 模型
-│   ├── base_model.py
-│   ├── cycle_gan_model.py
-│   └── networks.py
-├── test_data  # 测试数据
-│   ├── data # 吸气相数据
-│   ├── result # 测试结果
-│       ├── lobe # 肺叶分割结果
-│       └── airway # 气道分割结果 
+├── INR.pth # 模型的权重
+├── INR.py  # 模型
+├── testA   # 测试数据
+├── testB   # 呼气相生成保存路径
+│ 
 ├── data  # 数据读取
-│   ├── base_dataset.py
-│   ├── image_folder.py
-│   └── unaligned_dataset.py
-├── runs  # Logs and checkpoints save root
+│   ├── aligned_dataset.py
+│   ├── ...
+│   └── base_dataset.py
 ├── options  # 参数设置
 │   ├── base_options.py
+│   ├── train_options.py
 │   └── test_options.py
-├── excel.py #根据肺叶计算每个肺叶的PRM（'emphysema','fSAD','None','Normal'）,保存为excle文件
-├── infer.py #PRM生成代码
-├── nii2dcm.py 
-├── PRM.py #计算PRM
-└── test.py
+├── excel.py # 根据肺叶计算每个肺叶的PRM（'emphysema','fSAD','None','Normal'）,保存为excle文件
+└── test.py  # 呼气相生成代码
 ```
 # Example command to run the script
 
-python infer.py -i 吸气相路径  -o 输出路径 -g 显卡（0，1，2，3...） -a 气道路径 -e 肺叶路径 
-
-#运行后会自动在 -o后的路径下创建两个文件夹 , fake_exp存放合成呼气相nii，PRM存放PRM文件。
+直接使用test即可预测。
+如果新数据输入的时候，请将肺区提取出来并将肺区之外的CT值置为-1024。
 
 
 
